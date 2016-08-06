@@ -1,0 +1,10 @@
+Author:
+Bill Allombert
+
+Acknowledgement:
+This software relies heavily on the work of the libinput developers:
+<http://www.freedesktop.org/wiki/Software/libinput/>
+
+It was influenced by gpm (for GPM history, see
+<https://en.wikipedia.org/wiki/GPM_%28software%29>)
+and jamd <http://jamd.sourceforge.net> by Jonathan C. Atkins.

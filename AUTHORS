@@ -1,5 +1,7 @@
 Author:
-Bill Allombert
+Bill Allombert <ballombe@debian.org>
+Project page: https://alioth.debian.org/projects/consolation/
+
 
 Acknowledgement:
 This software relies heavily on the work of the libinput developers:

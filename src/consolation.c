@@ -45,12 +45,6 @@ static int csl_daemon(void)
 
 int main(int argc, char **argv)
 {
-  struct winsize s;
-  tty0 = open("/dev/tty0", O_RDWR);
-  if (tty0 < 0) perror("open console");
-  if (ioctl(0, TIOCGWINSZ, &s)) perror("TIOCGWINSZ");
-  screen_width  = s.ws_col;
-  screen_height = s.ws_row;
   if (!csl_daemon()) event_main(argc, argv);
   return 0;
 }

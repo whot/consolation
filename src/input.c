@@ -125,6 +125,7 @@ handle_and_print_events(struct libinput *li)
   struct libinput_event *ev;
 
   libinput_dispatch(li);
+  set_screen_size();
   while ((ev = libinput_get_event(li))) {
 
     switch (libinput_event_get_type(ev)) {

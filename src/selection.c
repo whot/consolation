@@ -23,9 +23,21 @@
 
 #include "consolation.h"
 
+void
+set_screen_size(void)
+{
+  struct winsize s;
+  int fd = open("/dev/tty0",O_RDONLY);
+  if (ioctl(fd, TIOCGWINSZ, &s)) perror("TIOCGWINSZ");
+  close(fd);
+  screen_width  = s.ws_col;
+  screen_height = s.ws_row;
+}
+
 static void
 linux_selection(int xs, int ys, int xe, int ye, int sel_mode)
 {
+  int fd;
   struct {
     char argp[2]; /*Force struct alignment*/
     struct tiocl_selection sel;
@@ -37,8 +49,10 @@ linux_selection(int xs, int ys, int xe, int ye, int sel_mode)
   s.sel.xe = xe;
   s.sel.ye = ye;
   s.sel.sel_mode = sel_mode;
-  if(ioctl(tty0, TIOCLINUX, ((char*)&s)+1)<0)
+  fd = open("/dev/tty0",O_RDONLY);
+  if(ioctl(fd, TIOCLINUX, ((char*)&s)+1)<0)
     perror("selection: TIOCLINUX");
+  close(fd);
 }
 
 void
@@ -79,6 +93,7 @@ void paste(void)
 
 void scroll(int sc)
 {
+  int fd;
   struct {
     char subcode[4];
     int sc;
@@ -88,6 +103,8 @@ void scroll(int sc)
   scr.subcode[2] = 0;
   scr.subcode[3] = 0;
   scr.sc = sc;
-  if(ioctl(tty0, TIOCLINUX, &scr)<0)
+  fd = open("/dev/tty0",O_RDONLY);
+  if(ioctl(fd, TIOCLINUX, &scr)<0)
     perror("scroll: TIOCLINUX");
+  close(fd);
 }

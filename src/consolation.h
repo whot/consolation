@@ -17,12 +17,12 @@
 
 /* global state */
 
-int tty0;
 unsigned int screen_width;
 unsigned int screen_height;
 
 /* selection.c */
 
+void set_screen_size(void);
 void draw_pointer(int x, int y);
 void select_region(int x, int y, int x2, int y2);
 void select_word(int x, int y);

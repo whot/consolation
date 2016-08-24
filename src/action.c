@@ -93,5 +93,5 @@ void
 vertical_axis(double v)
 {
   if (v)
-    scroll(v > 0 ? 2 : -2);    
+    scroll(v > 0 ? 2 : -2);
 }

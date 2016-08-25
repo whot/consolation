@@ -119,7 +119,7 @@ handle_touch_event_up(struct libinput_event *ev)
 }
 
 static int
-handle_and_print_events(struct libinput *li)
+handle_events(struct libinput *li)
 {
   int rc = -1;
   struct libinput_event *ev;
@@ -191,12 +191,12 @@ mainloop(struct libinput *li)
   }
 
   /* Handle already-pending device added events */
-  if (handle_and_print_events(li))
+  if (handle_events(li))
     fprintf(stderr, "Expected device added events on startup but got none. "
         "Maybe you don't have the right permissions?\n");
 
   while (!stop && poll(&fds, 1, -1) > -1)
-    handle_and_print_events(li);
+    handle_events(li);
 }
 
 int

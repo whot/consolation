@@ -200,14 +200,16 @@ mainloop(struct libinput *li)
 }
 
 int
-event_main(int argc, char **argv)
+event_init(int argc, char **argv)
+{
+  tools_init_context(&context);
+  return tools_parse_args(argc, argv, &context);
+}
+
+int
+event_main(void)
 {
   struct libinput *li;
-
-  tools_init_context(&context);
-
-  if (tools_parse_args(argc, argv, &context))
-    return 1;
 
   li = tools_open_backend(&context);
   if (!li)

@@ -45,6 +45,8 @@ static int csl_daemon(void)
 
 int main(int argc, char **argv)
 {
-  if (!csl_daemon()) event_main(argc, argv);
+  if (event_init(argc, argv))
+    return 1;
+  if (!csl_daemon()) event_main();
   return 0;
 }

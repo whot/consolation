@@ -42,4 +42,5 @@ void vertical_axis(double v);
 
 /* input.c */
 
-int event_main(int argc, char **argv);
+int event_init(int argc, char **argv);
+int event_main(void);

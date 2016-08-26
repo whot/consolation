@@ -36,6 +36,7 @@
 #include <libevdev/libevdev.h>
 
 #include "shared.h"
+#include "config.h"
 
 #define streq(s1, s2) (strcmp((s1), (s2)) == 0)
 
@@ -64,6 +65,7 @@ enum options {
 	OPT_SCROLL_BUTTON,
 	OPT_SPEED,
 	OPT_PROFILE,
+	OPT_VERSION
 };
 
 static void
@@ -110,8 +112,15 @@ tools_usage()
 	       "Other options:\n"
 	       "--grab .......... Exclusively grab all openend devices\n"
 	       "--verbose ....... Print debugging output.\n"
+	       "--version ....... Print version information.\n"
 	       "--help .......... Print this help.\n",
 		program_invocation_short_name);
+}
+
+void
+tools_version(void)
+{
+	printf("%s %s\n", PACKAGE_NAME, PACKAGE_VERSION);
 }
 
 void
@@ -151,6 +160,7 @@ tools_parse_args(int argc, char **argv, struct tools_context *context)
 			{ "udev", 0, 0, OPT_UDEV },
 			{ "grab", 0, 0, OPT_GRAB },
 			{ "help", 0, 0, OPT_HELP },
+			{ "version", 0, 0, OPT_VERSION },
 			{ "verbose", 0, 0, OPT_VERBOSE },
 			{ "enable-tap", 0, 0, OPT_TAP_ENABLE },
 			{ "disable-tap", 0, 0, OPT_TAP_DISABLE },
@@ -182,6 +192,9 @@ tools_parse_args(int argc, char **argv, struct tools_context *context)
 		case 'h':
 		case OPT_HELP:
 			tools_usage();
+			exit(0);
+		case OPT_VERSION:
+			tools_version();
 			exit(0);
 		case OPT_DEVICE:
 			options->backend = BACKEND_DEVICE;

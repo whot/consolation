@@ -5,6 +5,7 @@ AC_INIT([consolation], [0.0.2])
 AC_CONFIG_AUX_DIR(config)
 
 AM_INIT_AUTOMAKE([1.11 foreign no-dist-gzip dist-xz])
+AM_CONFIG_HEADER(src/config.h)
 
 # Check for programs
 AC_PROG_CC

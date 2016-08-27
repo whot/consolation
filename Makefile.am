@@ -1,6 +1,6 @@
 SUBDIRS = src
 dist_man_MANS = consolation.8
-EXTRA_DIST = AUTHORS LICENSE
+EXTRA_DIST = AUTHORS ChangeLog LICENSE
 src/consolation:
 	cd src && $(MAKE) consolation
 

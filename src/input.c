@@ -53,6 +53,15 @@ handle_motion_event(struct libinput_event *ev)
 }
 
 static void
+handle_absmotion_event(struct libinput_event *ev)
+{
+  struct libinput_event_pointer *p = libinput_event_get_pointer_event(ev);
+  double x = libinput_event_pointer_get_absolute_x_transformed(p, screen_width);
+  double y = libinput_event_pointer_get_absolute_y_transformed(p, screen_height);
+  set_pointer(x, y);
+}
+
+static void
 handle_pointer_button_event(struct libinput_event *ev)
 {
   struct libinput_event_pointer *p = libinput_event_get_pointer_event(ev);
@@ -138,6 +147,9 @@ handle_events(struct libinput *li)
       break;
     case LIBINPUT_EVENT_POINTER_MOTION:
       handle_motion_event(ev);
+      break;
+    case LIBINPUT_EVENT_POINTER_MOTION_ABSOLUTE:
+      handle_absmotion_event(ev);
       break;
     case LIBINPUT_EVENT_POINTER_BUTTON:
       handle_pointer_button_event(ev);

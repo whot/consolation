@@ -1,6 +1,6 @@
 AC_PREREQ([2.69])
 
-AC_INIT([consolation], [0.0.2])
+AC_INIT([consolation], [0.0.3])
 
 AC_CONFIG_AUX_DIR(config)
 

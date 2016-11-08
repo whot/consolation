@@ -1,3 +1,8 @@
+Version 0.0.3 -- 28 Nov 2016
+
+  [ Sitsofe Wheeler ]
+  * Add support for absolute devices
+
 Version 0.0.2 -- 28 Aug 2016
 
   * Fix terminal size detection. Reported by T. Joseph Carter.
